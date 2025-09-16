@@ -57,6 +57,14 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        hydration: {
+          primary: "hsl(var(--hydration-primary))",
+          secondary: "hsl(var(--hydration-secondary))",
+          accent: "hsl(var(--hydration-accent))",
+          success: "hsl(var(--hydration-success))",
+          warning: "hsl(var(--hydration-warning))",
+          danger: "hsl(var(--hydration-danger))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -80,10 +88,44 @@ export default {
             height: "0",
           },
         },
+        "water-drop": {
+          "0%, 100%": {
+            transform: "translateY(0) scale(1)",
+            opacity: "1",
+          },
+          "50%": {
+            transform: "translateY(-10px) scale(1.1)",
+            opacity: "0.8",
+          },
+        },
+        "wave": {
+          "0%, 100%": {
+            transform: "rotate(0deg)",
+          },
+          "25%": {
+            transform: "rotate(5deg)",
+          },
+          "75%": {
+            transform: "rotate(-5deg)",
+          },
+        },
+        "bounce-gentle": {
+          "0%, 100%": {
+            transform: "translateY(0)",
+            animationTimingFunction: "cubic-bezier(0, 0, 0.2, 1)",
+          },
+          "50%": {
+            transform: "translateY(-25%)",
+            animationTimingFunction: "cubic-bezier(0.8, 0, 1, 1)",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "water-drop": "water-drop 1s ease-in-out infinite",
+        "wave": "wave 2s ease-in-out infinite",
+        "bounce-gentle": "bounce-gentle 2s ease-in-out infinite",
       },
     },
   },
