@@ -26,10 +26,11 @@ export function useAICoach() {
     setIsGenerating(true)
     
     try {
-      const response = await fetch('/api/ai-coach', {
+      const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/ai-coach`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
         },
         body: JSON.stringify({
           context,
@@ -92,7 +93,7 @@ export function useAICoach() {
     return contextMessages[Math.floor(Math.random() * contextMessages.length)]
   }
 
-  const addMessage = async (type: CoachingMessage['type'], context: string) => {
+  const addMessage = async (type: CoachingMessage['type'], context: 'goal_reached' | 'behind_schedule' | 'streak_milestone' | 'motivational' | 'random') => {
     const message = await generateCoachingMessage(context)
     
     const newMessage: CoachingMessage = {

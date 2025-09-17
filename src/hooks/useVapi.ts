@@ -24,22 +24,13 @@ export function useVapi() {
       setIsLoading(true)
       
       await vapi.start({
-        assistantId: import.meta.env.VITE_VAPI_ASSISTANT_ID,
-        assistantOverrides: {
-          variableValues: {
-            systemPrompt: `You are a hydration assistant for the Hydrate-or-DIEdrate app. 
-            Your job is to help users log their water intake through voice commands.
-            
-            Listen for phrases like:
-            - "I drank 250ml" or "I had a glass of water"
-            - "Log 500ml" or "Add half a liter"
-            - "I finished a bottle" (assume 500ml)
-            - "I had a cup" (assume 250ml)
-            
-            Extract the amount in milliliters and respond with just the number.
-            If unclear, ask for clarification.
-            Be encouraging and brief.`,
-          },
+        model: {
+          provider: "openai",
+          model: "gpt-3.5-turbo",
+        },
+        voice: {
+          provider: "openai",
+          voiceId: "alloy",
         },
       })
       
